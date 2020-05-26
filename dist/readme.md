@@ -1,6 +1,6 @@
 # To-do List
 
-simple landpage exercise built with:
+Simple landpage exercise built with:
 
 * HTML5
 * CSS3
