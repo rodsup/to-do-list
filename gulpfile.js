@@ -10,6 +10,7 @@ const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync');
 const shell = require('gulp-shell');
 const htmlPartial  = require('gulp-html-partial');
+const babel = require('gulp-babel');
 
 //startup the web server and browserSync
 //set watchers
@@ -25,13 +26,13 @@ function server() {
         notify: false,
         //browser: "chromium"
     });
-    gulp.watch(['./src/scripts/**/*.js', '!./src/scripts/scripts.js'],  scripts);
-    gulp.watch('./src/styles/scss/**/*.scss', styles);
+    gulp.watch(['./src/scripts/**/*.js', '!./src/scripts/scripts.js'],  script);
+    gulp.watch('./src/styles/scss/**/*.scss', style);
     gulp.watch('./src/views/**/*.html', html);
 };
 
 //compiling Javascripts
-function scripts() { 
+function script() { 
     return gulp.src(['./src/scripts/**/*.js', '!./src/scripts/scripts.js'])
     .pipe(plumber())
     .on('error', gutil.log)
@@ -41,16 +42,19 @@ function scripts() {
 };
 
 //compiling Javascripts for deployment
-function scriptsDeploy() {
+function scriptDeploy() {
     return gulp.src(['./src/scripts/**/*.js', '!./src/scripts/scripts.js'])
     .pipe(plumber())
     .pipe(concat('scripts.js'))
+    .pipe(babel({
+        presets: ['@babel/env']
+    }))
     .pipe(uglify())
     .pipe(gulp.dest('dist/scripts'))
 };
 
 //compiling SCSS files
-function styles() { 
+function style() { 
     return gulp.src('src/styles/scss/**/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
@@ -60,14 +64,14 @@ function styles() {
         cascade: true
     }))
     .on('error', gutil.log)
-    .pipe(concat('styles.css'))
+    .pipe(concat('style.css'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('src/styles'))
     .pipe(browserSync.reload({stream: true}))
 };
 
 //compiling SCSS files for deployment
-function stylesDeploy() {
+function styleDeploy() {
     return gulp.src('src/styles/scss/**/*.scss')
         .pipe(plumber())
         .pipe(sass())
@@ -75,7 +79,7 @@ function stylesDeploy() {
             Browserslist: ['last 2 versions', 'not dead'],
             cascade: true
         }))
-        .pipe(concat('styles.css'))
+        .pipe(concat('style.css'))
         .pipe(cleanCSS())
         .pipe(gulp.dest('dist/styles'))
 };
@@ -133,19 +137,19 @@ async function scaffold() {
 };
 
 //development tasks
-exports.styles = styles;
-exports.scripts = scripts;
+exports.style = style;
+exports.script = script;
 exports.html = html;
 exports.server = server;
-const compile = gulp.parallel(scripts, styles, html);
+const compile = gulp.parallel(script, style, html);
 exports.default = gulp.series(compile, server);
 
 //deployment tasks
-exports.scriptsDeploy = scriptsDeploy;
-exports.stylesDeploy = stylesDeploy;
+exports.scriptDeploy = scriptDeploy;
+exports.stylesDeploy = styleDeploy;
 exports.htmlDeploy = htmlDeploy;
 exports.clean = clean;
 exports.scaffold = scaffold;
 const preDeploy = gulp.series(clean, scaffold);
-const deploy = gulp.parallel(scriptsDeploy, stylesDeploy, htmlDeploy);
+const deploy = gulp.parallel(scriptDeploy, styleDeploy, htmlDeploy);
 exports.deploy = gulp.series(preDeploy, deploy);
