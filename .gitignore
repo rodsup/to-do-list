@@ -4,4 +4,3 @@ node_modules/
 src/*.html
 src/scripts/*.js
 src/styles/*.css
-dist/
