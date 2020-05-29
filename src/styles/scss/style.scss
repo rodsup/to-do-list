@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    font-size: 2.4rem;
+    font-size: 1.5rem;
 }
 
 header,
@@ -25,12 +25,16 @@ form {
     justify-content: center;
     align-items: center;
     color:white;
-    font-weight: 700;
+
+    .form-container {
+        display: flex;
+        background-color: white;
+    }
 
     .todo-input, .todo-button {
-        padding: 0.5rem;
+        padding: 8.5px;
         background: white;
-        font-size: 31px;
+        font-size: 26px;
     }
 
     .todo-button {
@@ -38,7 +42,9 @@ form {
         background: white;
         cursor: pointer;
         transition: all 0.3 ease;
-        font-size: 35px;
+        padding: 0 14px;
+        font-size: 30px;
+        margin-left: 1px;
     
         &:hover {
             background: #ff6f47;
@@ -56,19 +62,19 @@ form {
     .todo-list{
         min-width: 30%;
 
-        .todo{
+        .todo {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 0.5rem;
             background: white;
             color: black;
-            font-size: 1.5rem;
+            font-size: 20px;
             transition: all 0.5s ease;
 
             .todo-item {
                 flex: 1;
-                padding: 0rem 0.5rem;
+                padding: 0.5rem;
             }
 
             .trash-btn, 
@@ -108,9 +114,9 @@ select {
     appearance: none;
     outline: none;
     color: #ff6f47;
-    width: 12rem;
+    min-width: 225px;
     cursor: pointer;
-    padding: 1.2rem;
+    padding: 20px;
     background: white;
 }
 
@@ -118,28 +124,21 @@ select {
     margin: 1rem;
     position: relative; 
     overflow: hidden;
-}
 
-.select::after {
-    content: "\25BC";
-    position: absolute;
-    color: white;
-    background: #ff6f47;
-    top: 0;
-    right: 0;
-    padding: 1.15rem;
-    pointer-events: none;
-    transition: 0.3s ease;
-}
+    &::after {
+        content: "\25BC";
+        position: absolute;
+        color: white;
+        background: #ff6f47;
+        top: 0;
+        right: 0;
+        padding: 1.2rem;
+        pointer-events: none;
+        transition: 0.3s ease;
+    }
 
-.select:hover::after {
-    background: white;
-    color: #ff6f47;
-}
-
-//remove all outline
-*:focus { outline:0 !important; }
-
-li {
-    font-size: 1.2rem;
+    &:hover::after {
+        background: white;
+        color: #ff6f47;
+    }
 }
