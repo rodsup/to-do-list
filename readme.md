@@ -1,4 +1,4 @@
-# To-do List
+# To-do list in vanilla js
 
 Simple landpage exercise built with:
 
