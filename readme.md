@@ -1,3 +1,13 @@
-# Gulp-boilerplate 
+# To-do List
 
-Personal boilerplate built with Gulp 4.
+Simple landpage exercise built with:
+
+* HTML5
+* CSS3
+* JavaScript
+* Sass
+* Gulp 4
+
+## Link to Page
+
+* Access the page [here](https://rodsup.github.io/to-do-list/dist/)
