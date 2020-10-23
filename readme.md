@@ -10,4 +10,4 @@ Simple landpage exercise built with:
 
 ## Link to Page
 
-* Access the page [here](https://rodsup.github.io/to-do-list/dist/)
+* Access the page [here](https://rodsup.github.io/todo-list-vanilla-js/dist)
