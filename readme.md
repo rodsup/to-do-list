@@ -6,7 +6,7 @@ Simple landpage exercise built with:
 * CSS3
 * JavaScript
 * Sass
-* Gulp 4
+* Gulp.js
 
 ## Link
 
