@@ -8,6 +8,6 @@ Simple landpage exercise built with:
 * Sass
 * Gulp 4
 
-## Link to Page
+## Link
 
-* Access the page [here](https://rodsup.github.io/todo-list-vanilla-js/dist)
+* Access the page [here](https://rodsup.github.io/todo-list-vanilla-js/dist).
